@@ -130,6 +130,22 @@ namespace FirstWeekInData
             return -1;
         }
 
+        //לא סיימתי
+        public int Get(int index)
+        {
+            Node current = Head;
+            int count = 0;
+            while (current != null)
+            {
+                if (current.Data == data)
+                {
+                    return count;
+                }
+                count++;
+                current = current.Next;
+            }
+            return -1;
+        }
 
 
 
