@@ -25,14 +25,15 @@ int[] arr2 = { 3,2,1,4,3,7,5,89,71 };
 //{
 //    Console.Write(i + " ");
 //}
-LinkedList1 linkedList1 = new LinkedList1(0);
+LinkedList1 linkedList1 = new LinkedList1(5);
 
-linkedList1.Add(1);
+linkedList1.Add(5);
 linkedList1.Add(2);
 linkedList1.Add(4);
+linkedList1.Add(1);
 linkedList1.Add(6);
-linkedList1.display();
-linkedList1.RemoveValue(0);
+linkedList1.Display();
+linkedList1.RemoveAllValues(5);
 Console.WriteLine();
-linkedList1.display();
+linkedList1.Display();
 linkedList1.Length();

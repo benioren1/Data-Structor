@@ -30,7 +30,7 @@ namespace FirstWeekInData
             
         }
         //o(n)
-        public void display()
+        public void Display()
         {
             Node current = Head;
             while (current != null)
@@ -60,9 +60,10 @@ namespace FirstWeekInData
             Node current = Head;
             if (current.Data == data)
             { 
-            Head = Head.Next;
+               Head = Head.Next;
+                return;
             }
-            while (current != null)
+            while (current.Next != null)
             {
                 if (current.Next.Data  == data)
                 { 
@@ -76,21 +77,62 @@ namespace FirstWeekInData
         }
 
         //o(n)
-        public void RemoveAllValue(int data)
+        public void RemoveAllValues(int data)
         {
             Node current = Head;
+            if (current.Data == data)
+            {
+                Head = Head.Next;
+              
+            }
             while (current != null)
             {
-                if (current.Next.Data == data)
+                if (current.Data == data)
                 {
 
                     current.Next = current.Next.Next;
-                    break;
+                    
                 }
                 current = current.Next;
             }
 
         }
+        //o(n)
+        public void RemoveIndex(int index)
+        {
+            Node current = Head;
+            int count = 0;
+            while (current != null)
+            {
+                if (count == index)
+                {
+                    current.Next = current.Next.Next;
+                    break;
+                }
+                count++;
+                current = current.Next;
+            }
+        }
+        //o(n)
+        public int Find(int data)
+        {
+            Node current = Head;
+            int count = 0;
+            while (current != null)
+            {
+                if (current.Data == data)
+                {
+                    return count;
+                }
+                count++;
+                current = current.Next;
+            }
+            return -1;
+        }
+
+
+
+
 
 
     }
