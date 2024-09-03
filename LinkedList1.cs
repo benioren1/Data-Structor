@@ -82,8 +82,9 @@ namespace FirstWeekInData
         public void RemoveAllValues(int data)
         {
             Node current = Head;
-            if (current.Data == data)
+            while (current.Data == data)
             {
+
                 Head = Head.Next;
               
             }
