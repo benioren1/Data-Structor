@@ -11,6 +11,8 @@ namespace FirstWeekInData
         public Node Head { get; set; }
 
         public LinkedList1() { }
+
+        //o(1)
         public LinkedList1(int data)
         {
         
