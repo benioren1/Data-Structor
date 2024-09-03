@@ -17,7 +17,7 @@ namespace FirstWeekInData
             Head = new Node(data);
         
         }
-        
+        //o(n)
         public void Add(int data)
         {
             
@@ -29,6 +29,7 @@ namespace FirstWeekInData
                 current.Next = new Node(data); ;
             
         }
+        //o(n)
         public void display()
         {
             Node current = Head;
@@ -39,6 +40,7 @@ namespace FirstWeekInData
             }
         }
 
+        //o(n)
         public void Length()
         {
             int count = 0;  
@@ -52,6 +54,7 @@ namespace FirstWeekInData
             Console.WriteLine(count);
         }
 
+        //o(n)
         public void RemoveValue(int data)
         {
             Node current = Head;
@@ -71,6 +74,8 @@ namespace FirstWeekInData
             }
             
         }
+
+        //o(n)
         public void RemoveAllValue(int data)
         {
             Node current = Head;
