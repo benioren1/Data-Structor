@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace FirstWeekInData
 {
-    public class LinkedList1
+    public class LinkedList
     {
         public Node Head { get; set; }
 
-        public LinkedList1() { }
+        public LinkedList() { }
 
         //o(1)
-        public LinkedList1(int data)
+        public LinkedList(int data)
         {
         
             Head = new Node(data);
@@ -22,28 +22,48 @@ namespace FirstWeekInData
         //o(n)
         public void Add(int data)
         {
-            
+            if (Head == null)
+            {
+                Node newNode = new Node(data);
+                Head = newNode;
+                return;
+            }
+            if (Head != null)
+            {
+                if (Head.Data == null)
+                {
+                    Head.Data = data;
+                    return;
+                }
+                Node newNode = new Node(data);
                 Node current = Head;
                 while (current.Next != null)
                 {
                     current = current.Next;
                 }
-                current.Next = new Node(data); ;
-            
+                current.Next = newNode;
+            }
         }
         //o(n)
-        public void Display()
+        public string Display()
         {
             Node current = Head;
-            while (current != null)
+            string values = "";
+            if (current != null)
             {
-                Console.Write($"{current.Data}->");
+                values += current.Data.ToString();
                 current = current.Next;
             }
+            while (current != null)
+            {
+                values += " -> " + current.Data;
+                current = current.Next;
+            }
+            return values;
         }
 
         //o(n)
-        public void Length()
+        public int Length()
         {
             int count = 0;  
             Node current = Head;
@@ -52,8 +72,7 @@ namespace FirstWeekInData
                 count++;
                 current = current.Next;
             }
-            Console.WriteLine();
-            Console.WriteLine(count);
+            return count;
         }
 
         //o(n)
@@ -81,36 +100,44 @@ namespace FirstWeekInData
         //o(n)
         public void RemoveAllValues(int data)
         {
+            while (Head != null && Head.Data == data)
+            {
+                Head = Head.Next; 
+            }
             Node current = Head;
-            while (current.Data == data)
+            while (current != null && current.Next != null)
             {
-
-                Head = Head.Next;
-              
-            }
-            while (current != null)
-            {
-                if (current.Data == data)
+                if (current.Next.Data == data)
                 {
-
+                   
                     current.Next = current.Next.Next;
-                    
                 }
-                current = current.Next;
+                else
+                {
+                    current = current.Next;
+                }
             }
-
         }
         //o(n)
         public void RemoveIndex(int index)
         {
             Node current = Head;
             int count = 0;
-            while (current != null)
+            while (current != null )
             {
                 if (count == index)
                 {
-                    current.Next = current.Next.Next;
-                    break;
+                    if (current.Next != null)
+                    {
+                        current.Next = current.Next.Next;
+                        break;
+                    }
+                    else
+                    {
+                        current.Next = null; break;
+
+
+                    }
                 }
                 count++;
                 current = current.Next;
