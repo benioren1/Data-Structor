@@ -78,6 +78,8 @@ namespace FirstWeekInData
         //o(n)
         public void RemoveValue(int data)
         {
+            if (Head == null)
+                return;
             Node current = Head;
             if (current.Data == data)
             { 
