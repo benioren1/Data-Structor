@@ -121,26 +121,28 @@ namespace FirstWeekInData
         //o(n)
         public void RemoveIndex(int index)
         {
-            Node current = Head;
-            int count = 0;
-            while (current != null )
+            if (index == 0)
             {
-                if (count == index)
+                if (Head != null)
                 {
-                    if (current.Next != null)
-                    {
-                        current.Next = current.Next.Next;
-                        break;
-                    }
-                    else
-                    {
-                        current.Next = null; break;
-
-
-                    }
+                    Head = Head.Next;
                 }
-                count++;
-                current = current.Next;
+                return;
+            }
+            if (Head == null || index < 0)
+            {
+                return;
+            }
+            Node temp = Head;
+            Node prev = null;
+            for (int i = 0; i < index && temp.Next != null; i++)
+            {
+                prev = temp;
+                temp = temp.Next;
+            }
+            if (temp != null && prev != null)
+            {
+                prev.Next = temp.Next;
             }
         }
         //o(n)
