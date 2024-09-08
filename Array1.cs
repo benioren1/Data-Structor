@@ -46,44 +46,36 @@ namespace FirstWeekInData
 
             while (left1 < arr1.Length && right2 < arr2.Length)
             {
-
                 if (arr1[left1] < arr2[right2])
                 {
-
                     arr3[index] = arr1[left1];
                     index++;
                     left1++;
                 }
                 else
                 {
-
                     arr3[index] = arr2[right2];
                     index++;
                     right2++;
-
                 }
-
             }
             while (left1 < arr1.Length)
             {
                 arr3[index] = arr1[left1];
                 index++;
                 left1++;
-
             }
             while (right2 < arr2.Length)
             {
                 arr3[index] = arr2[right2];
                 index++;
                 right2++;
-
             }
-
             return arr3;
         }
 
         //o(n**2)
-        public static int[] grtindexamount(int[] array)
+        public static int[] getindexamount(int[] array)
         {
             int[] ints = new int[array.Length];
 
@@ -138,7 +130,6 @@ namespace FirstWeekInData
             {
                 if ((arr[i] + arr[i + 1]) > count)
                 {
-
                     max = arr[i];
                     secentmax = arr[i + 1];
                     count = arr[i] + arr[i + 1];
@@ -147,22 +138,18 @@ namespace FirstWeekInData
             ints[0] = max;
             ints[1] = secentmax;
             return ints;
-
         }
 
         //o(n)
         public static bool getifaxsist(int[] arr, int num)
         {
-
             int count = 0;
             for (int i = 0; i < arr.Length ; i++)
             {
-
                 if (arr[i] == num)
                 {
                     count++;
                 }
-
             }
             if (count == 0)
             {
@@ -172,7 +159,6 @@ namespace FirstWeekInData
         //o(n)
         public static int GetThreeMaxNum(int[] arr)
         {
-         
             if (arr.Length < 3)
             {
                 return 0;
@@ -200,7 +186,6 @@ namespace FirstWeekInData
                     max3 = arr[i];
                 }
             }
-       
             return max1 + max2 + max3;
         }
 
@@ -208,7 +193,6 @@ namespace FirstWeekInData
         public static int[] getprodact(int[] arr, int prodact)
         {
             int[] ints = new int[2];
-           
             for (int i = 0; i < arr.Length-1; i++)
             {
                 
@@ -234,12 +218,35 @@ namespace FirstWeekInData
                     lists[index][1] = arr[i+1];
                     index++;
                 }
-
             }
             return lists;
+        }
+
+
+        public static int findmaxsubarreysum(int[] arrey)
+        { 
             
+            int lastmax = 0;
+
+            int max = arrey[0];
+            for (int i = 0; i < arrey.Length - 1; ++i)
+            {
+
+                if (arrey[i] == arrey[i+1] - 1)
+                { 
+                    lastmax += arrey[i];
+                    max += arrey[i];
+                
+                    
+                }
+            
+            
+            }
+        
+        
         
         }
+
 
 
     }

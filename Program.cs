@@ -1,326 +1,174 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BalancedBinaryTree;
 using FirstWeekInData;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
+//using System.Text.Json;
+//Stack stack1 = new Stack();
 
-class Program
+//AVLTree tree = new AVLTree();
+
+//// Example Insertions
+//tree.Insert(10);
+//tree.Insert(20);
+//tree.Insert(30);
+//tree.Insert(40);
+//tree.Insert(50);
+//tree.Insert(25);
+
+//Console.WriteLine("In-order traversal of the AVL tree:");
+//tree.PrintAll();
+
+//// Example Deletions
+//tree.Delete(10);
+
+//Console.WriteLine("In-order traversal after deletion:");
+//tree.PrintAll();
+
+
+//stack1.push(1);
+//stack1.push(2);
+//stack1.push(3);
+//stack1.push(4);
+//stack1.Pop();
+//Console.WriteLine(stack1.peek()); 
+
+//Queue1 queue1 = new Queue1();
+//queue1.Equeue(1);
+//queue1.Equeue(2);
+//queue1.Equeue(3);
+//queue1.Equeue(4);
+//queue1.Equeue(5);
+//queue1.Dequeue();
+//queue1.Dequeue();
+//queue1.Equeue(8);
+//Console.WriteLine(queue1.peek());
+//Console.Write(Recurtion1.isPalindrome("abcdcba"));
+//Console.Write(Recurtion1.decimalToBinary(30));
+//BinaryTree binaryTree = new BinaryTree();
+//binaryTree.Insert(20);
+//binaryTree.Insert(3);
+//binaryTree.Insert(7);
+//binaryTree.Insert(34);
+//binaryTree.Delete(7);
+//binaryTree.PrintTree();
+//Console.WriteLine(binaryTree.Find(3));
+//Console.WriteLine(binaryTree.Find(30));
+//Console.WriteLine(binaryTree.FindMin());
+//Console.WriteLine(binaryTree.FindMax());
+
+//binaryTree.PrintAll();
+
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        int totalTests = 0;
-        int passedTests = 0;
+        int[] arr1 = { 1, 2, 3 };
+        char[][] chars = new char[3][];
 
-        // Test 1: Creating an empty linked list
-        totalTests++;
-        try
+        for (int i = 0; i < arr1.Length; i++)
         {
-            LinkedList list1 = new LinkedList();
-            if (list1.Length() == 0)
+            for (int j = 0; j < arr1.Length; j++)
             {
-                Console.WriteLine("Test 1 Passed: Creating an empty linked list.");
-                passedTests++;
+                chars[i][i] = '_';
             }
-            else
-            {
-                Console.WriteLine("Test 1 Failed: Length is not zero for an empty list.");
-            }
+
+
+
         }
-        catch
+    }
+    public bool Win(char[][] board)
+    {
+        if (board.Length != 3 || board[0].Length != 3)
         {
-            Console.WriteLine("Test 1 Failed: Unexpected exception.");
+            throw new ArgumentException("The board must be 3x3.");
         }
 
-        // Test 2: Adding elements to the end of the list
-        totalTests++;
-        try
+        bool CheckLine(char c1, char c2, char c3)
         {
-            LinkedList list2 = new LinkedList();
-            list2.Add(1);
-            list2.Add(2);
-            list2.Add(3);
-
-            if (list2.Length() == 3 && list2.Display() == "1 -> 2 -> 3")
-            {
-                Console.WriteLine("Test 2 Passed: Adding elements to the end of the list.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 2 Failed: Elements not added correctly.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 2 Failed: Unexpected exception.");
+            return c1 == c2 && c2 == c3 && c1 != ' ';
         }
 
-        // Test 3: Removing a value (RemoveValue) from the list
-        totalTests++;
-        try
+        switch (true)
         {
-            LinkedList list3 = new LinkedList();
-            list3.Add(1);
-            list3.Add(2);
-            list3.Add(3);
-            list3.RemoveValue(2);
+            // Check all rows
+            case var _ when CheckLine(board[0][0], board[0][1], board[0][2]):
+            case var _ when CheckLine(board[1][0], board[1][1], board[1][2]):
+            case var _ when CheckLine(board[2][0], board[2][1], board[2][2]):
+                return true;
 
-            if (list3.Length() == 2 && list3.Display() == "1 -> 3")
-            {
-                Console.WriteLine("Test 3 Passed: Removing a value from the list.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 3 Failed: Value not removed correctly.");
-            }
+            // Check all columns
+            case var _ when CheckLine(board[0][0], board[1][0], board[2][0]):
+            case var _ when CheckLine(board[0][1], board[1][1], board[2][1]):
+            case var _ when CheckLine(board[0][2], board[1][2], board[2][2]):
+                return true;
+
+            // Check diagonals
+            case var _ when CheckLine(board[0][0], board[1][1], board[2][2]):
+            case var _ when CheckLine(board[0][2], board[1][1], board[2][0]):
+                return true;
+
+            default:
+                return false;
         }
-        catch
-        {
-            Console.WriteLine("Test 3 Failed: Unexpected exception.");
-        }
-
-        // Test 4: Removing all instances of a value (RemoveAllValues)
-        totalTests++;
-        try
-        {
-            LinkedList list4 = new LinkedList();
-            list4.Add(5);
-            list4.Add(5);
-            list4.Add(5);
-            list4.RemoveAllValues(5);
-
-            if (list4.Length() == 0 && list4.Display() == "")
-            {
-                Console.WriteLine("Test 4 Passed: Removing all instances of a value from the list.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 4 Failed: Not all instances of value removed.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 4 Failed: Unexpected exception.");
-        }
-
-        // Test 5: Removing by index (RemoveIndex)
-        totalTests++;
-        try
-        {
-            LinkedList list5 = new LinkedList();
-            list5.Add(10);
-            list5.Add(20);
-            list5.Add(30);
-            list5.RemoveIndex(1); // Should remove the second element
-
-            if (list5.Length() == 2 && list5.Display() == "10 -> 30")
-            {
-                Console.WriteLine("Test 5 Passed: Removing by index.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 5 Failed: Value not removed at the correct index.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 5 Failed: Unexpected exception.");
-        }
-
-        // Test 6: Finding an element (Find) and getting the correct index
-        totalTests++;
-        try
-        {
-            LinkedList list6 = new LinkedList();
-            list6.Add(100);
-            list6.Add(200);
-            int index = list6.Find(200);
-
-            if (index == 1)
-            {
-                Console.WriteLine("Test 6 Passed: Finding an element returns the correct index.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 6 Failed: Incorrect index returned by Find method.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 6 Failed: Unexpected exception.");
-        }
-
-        // Test 7: Finding a non-existent element (Find)
-        totalTests++;
-        try
-        {
-            LinkedList list7 = new LinkedList();
-            list7.Add(1);
-            list7.Add(2);
-            list7.Add(3);
-            int index = list7.Find(4); // Element 4 does not exist
-
-            if (index == -1) // Assuming -1 indicates not found
-            {
-                Console.WriteLine("Test 7 Passed: Finding a non-existent element returns -1.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 7 Failed: Incorrect result for finding a non-existent element.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 7 Failed: Unexpected exception.");
-        }
-
-        // Test 8: Getting a value by index (Get)
-        totalTests++;
-        try
-        {
-            LinkedList list8 = new LinkedList();
-            list8.Add(101);
-            list8.Add(102);
-            int value = list8.Get(1);
-
-            if (value == 102)
-            {
-                Console.WriteLine("Test 8 Passed: Getting a value by index.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 8 Failed: Incorrect value returned by Get method.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 8 Failed: Unexpected exception.");
-        }
-
-        // Test 9: Edge case - Removing from an empty list
-        totalTests++;
-        try
-        {
-            LinkedList list9 = new LinkedList();
-            list9.RemoveValue(100); // Should handle gracefully without changes
-
-            if (list9.Length() == 0)
-            {
-                Console.WriteLine("Test 9 Passed: Removing from an empty list does nothing.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 9 Failed: Removing from an empty list should not change length.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 9 Failed: Unexpected exception.");
-        }
-
-        // Test 10: Edge case - Getting from an empty list
-        totalTests++;
-        try
-        {
-            LinkedList list10 = new LinkedList();
-            int value = list10.Get(0); // Should handle gracefully and return -1 or some error code
-
-            if (value == -1) // Assuming -1 indicates an invalid index
-            {
-                Console.WriteLine("Test 10 Passed: Getting from an empty list returned -1.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 10 Failed: Incorrect value returned for empty list.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 10 Failed: Unexpected exception.");
-        }
-
-        // Test 11: Edge case - Index out of range
-        totalTests++;
-        try
-        {
-            LinkedList list11 = new LinkedList();
-            list11.Add(1);
-            int value = list11.Get(5); // Should handle gracefully and return -1 or some error code
-
-            if (value == -1) // Assuming -1 indicates an invalid index
-            {
-                Console.WriteLine("Test 11 Passed: Out of range index correctly handled.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 11 Failed: Incorrect value returned for out of range index.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 11 Failed: Unexpected exception.");
-        }
-
-        // Test 12: Edge case - Removing the head of the list
-        totalTests++;
-        try
-        {
-            LinkedList list12 = new LinkedList();
-            list12.Add(10);
-            list12.Add(20);
-            list12.RemoveValue(10); // Remove the head element
-
-            if (list12.Length() == 1 && list12.Display() == "20")
-            {
-                Console.WriteLine("Test 12 Passed: Removing the head of the list.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 12 Failed: Head not removed correctly.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 12 Failed: Unexpected exception.");
-        }
-
-        // Test 13: Edge case - Large data set
-        totalTests++;
-        try
-        {
-            LinkedList list13 = new LinkedList();
-            for (int i = 0; i < 1000; i++)
-            {
-                list13.Add(i);
-            }
-
-            bool correctLength = list13.Length() == 1000;
-            bool correctValue = list13.Get(999) == 999;
-
-            if (correctLength && correctValue)
-            {
-                Console.WriteLine("Test 13 Passed: Handling a large data set.");
-                passedTests++;
-            }
-            else
-            {
-                Console.WriteLine("Test 13 Failed: Incorrect behavior with a large data set.");
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Test 13 Failed: Unexpected exception.");
-        }
-
-        // Final Test Summary
-        Console.WriteLine("\nFinal Test Summary: " + passedTests + " out of " + totalTests + " tests passed.");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public class Program
+//{
+//    public static object JsonConvert { get; private set; }
+//    public static object JsonFileReader { get; private set; }
+
+//    public static void Main(string[] args)
+//    {
+//        string filePath = @"C:\firstweek in data\FirstWeekInData\json1.json";
+
+
+//        string jsonString = File.ReadAllText(filePath);
+
+
+//        var data = JsonSerializer.Deserialize<Dictionary<string, Json>>(jsonString);
+
+
+//        var trees = new Dictionary<string, BinaryTree>();
+
+
+//        foreach (var kvp in data)
+//        {
+//            BinaryTree tree = new BinaryTree();
+//            tree.Name = kvp.Key;
+
+//            foreach (var number in kvp.Value.list)
+//            {
+//                tree.Insert(number); 
+//            }
+
+//            trees[kvp.Key] = tree; 
+//        }
+
+//        foreach (var kvp in trees)
+//        {
+//            Console.WriteLine($"Tree for key: {kvp.Key}");
+//            Console.WriteLine($"Name: {kvp.Value.Name}");
+//            Console.WriteLine($"Min: {kvp.Value.FindMin()}");
+//            Console.WriteLine($"Max: {kvp.Value.FindMax()}");
+//            Console.WriteLine();
+//        }
+
+
+//    }
+//}
